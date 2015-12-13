@@ -1,0 +1,26 @@
+{
+  "name": "light",
+  "base": "PersistedModel",
+  "strict": false,
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "lightState": {
+      "type": "string",
+      "required": true,
+      "comments": "the state of LED: blink, on, off"
+    },
+    "lightID": {
+      "type": "number",
+      "id": true,
+      "required": true,
+      "comments": "the pin number on board it will connect to"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
