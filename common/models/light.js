@@ -42,27 +42,25 @@ module.exports = function(Light) {
 
   Light.afterRemote('upsert', function(context, user, next) {
     console.log("+++ upsert afterRemote is called.");
-    var state = context.req.body.lightState.toLowerCase();
-    var id = context.req.body.lightID;
-    console.log('state requested: '+context.req.body.lightState + ' for ID: '+id);
 
-    LED(id,state);
+    LED(context);
 
     next();
   });
 
   Light.afterRemote('create',function(context, user, next) {
     console.log("+++ create afterRemote is called.");
-    var state = context.req.body.lightState.toLowerCase();
-    var id = context.req.body.lightID;
-    console.log('state requested: '+context.req.body.lightState + ' for ID: '+id);
 
     LED(id,state);
 
     next();
   });
 
-  function LED(id, state){
+  function LED(context){
+    var state = context.req.body.lightState.toLowerCase();
+    var id = context.req.body.lightID;
+    console.log('state requested: '+state + ' for ID: '+id);
+
     // on
     if(ON == state){
       led.on();
