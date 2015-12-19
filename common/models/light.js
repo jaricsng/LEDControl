@@ -61,7 +61,6 @@ module.exports = function(Light) {
     var id = context.req.body.lightID;
     console.log('state requested: '+state + ' for ID: '+id);
 
-    // on
     if(ON == state){
       led.on();
     }else if (OFF == state) {
