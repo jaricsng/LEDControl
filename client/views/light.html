@@ -1,0 +1,44 @@
+<h1>LED Control</h1>
+<hr>
+<h4>
+Control the default LED connected to Pin 13 of Arduino board.</h4>
+
+<button ng-click="onLight()">ON it.</button>&nbsp;
+<button ng-click="offLight()">OFF it.</button>&nbsp;
+<button ng-click="blinkLight()">BLINK it.</button>&nbsp;
+<hr>
+<form name="lightForm" novalidate ng-submit="setLight()">
+  <div class="form-group"
+      ng-class="{'has-error': lightForm.lightID.$invalid
+        && lightForm.lightID.$dirty}">
+
+  <div class="form-group"
+      ng-class="{'has-error': lightForm.lightState.$invalid
+        && lightForm.lightState.$dirty}">
+
+    <input type="text" class="form-control focus" name="lightState"
+        placeholder="LED state: on, off, blink" autocomplete="off" required
+        ng-model="newLight.lightState">
+        <span class="has-error control-label" ng-show="
+            lightForm.lightState.$invalid && lightForm.lightState.$dirty">
+          lightState is required.
+        </span>
+
+    <input type="text" class="form-control focus" name="lightID"
+        placeholder="LED ID: 13" autocomplete="off" required
+        ng-model="newLight.lightID" ng-init="newLight.lightID=13">
+
+        <span class="has-error control-label" ng-show="
+            lightForm.lightID.$invalid && lightForm.lightID.$dirty">
+          lightID is required.
+        </span>
+  </div>
+  <button class="btn btn-default" ng-disabled="lightForm.$invalid">Set it</button>
+</form>
+<hr>
+<h3>LED Status List</h3>
+<div class="list-group">
+  <a class="list-group-item" ng-repeat="light in lights">{{light.lightID}},&nbsp;
+    {{light.lightState}}
+</div>
+<hr>
