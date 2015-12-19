@@ -21,14 +21,7 @@ angular
       $scope.newLight.lightID = 13;
       console.log("lightState : "+$scope.newLight.lightState);
       console.log("lightID : "+$scope.newLight.lightID);
-      Light
-        .upsert($scope.newLight)
-        .$promise
-        .then(function(light) {
-          $scope.lightForm.lightState.$setPristine();
-          $('.focus').focus();
-          getLights();
-        });
+      $scope.setLight();
     };
 
     $scope.offLight = function(){
@@ -37,14 +30,7 @@ angular
       $scope.newLight.lightID = 13;
       console.log("lightState : "+$scope.newLight.lightState);
       console.log("lightID : "+$scope.newLight.lightID);
-      Light
-        .upsert($scope.newLight)
-        .$promise
-        .then(function(light) {
-          $scope.lightForm.lightState.$setPristine();
-          $('.focus').focus();
-          getLights();
-        });
+      $scope.setLight();
     };
 
     $scope.blinkLight = function(){
@@ -53,14 +39,7 @@ angular
       $scope.newLight.lightID = 13;
       console.log("lightState : "+$scope.newLight.lightState);
       console.log("lightID : "+$scope.newLight.lightID);
-      Light
-        .upsert($scope.newLight)
-        .$promise
-        .then(function(light) {
-          $scope.lightForm.lightState.$setPristine();
-          $('.focus').focus();
-          getLights();
-        });
+      $scope.setLight();
     };
 
     $scope.setLight = function() {
@@ -72,10 +51,8 @@ angular
         .upsert($scope.newLight)
         .$promise
         .then(function(light) {
-          // $scope.newLight = '';
-          $scope.newLight.lightID = 13;
           $scope.lightForm.lightState.$setPristine();
-          //$scope.lightForm.lightID.$setPristine();
+          $scope.lightForm.lightID.$setPristine();
           $('.focus').focus();
           getLights();
         });
