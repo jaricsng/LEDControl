@@ -7,16 +7,16 @@
     "validateUpsert": true
   },
   "properties": {
-    "lightState": {
-      "type": "string",
-      "required": true,
-      "comments": "the state of LED: blink, on, off"
-    },
     "lightID": {
       "type": "number",
       "id": true,
       "required": true,
       "comments": "the pin number on board it will connect to"
+    },
+    "lightState": {
+      "type": "string",
+      "required": true,
+      "comments": "the state of LED: blink, on, off"
     }
   },
   "validations": [],

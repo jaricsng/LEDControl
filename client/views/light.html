@@ -3,9 +3,9 @@
 <h4>
 Control the default LED connected to Pin 13 of Arduino board.</h4>
 
-<button ng-click="onLight()">ON it.</button>&nbsp;
-<button ng-click="offLight()">OFF it.</button>&nbsp;
-<button ng-click="blinkLight()">BLINK it.</button>&nbsp;
+<button class="btn btn-success" ng-click="onLight()">ON it.</button>&nbsp;
+<button class="btn btn-danger" ng-click="offLight()">OFF it.</button>&nbsp;
+<button class="btn btn-warning" ng-click="blinkLight()">BLINK it.</button>&nbsp;
 <hr>
 <form name="lightForm" novalidate ng-submit="setLight()">
   <div class="form-group"
