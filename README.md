@@ -3,7 +3,7 @@
 Using StrongLoop to rapid proto type application for proof of concept and demostration.
 Wtth IBM purchased of StrongLoop, I need to be familiar with it and the best way to do that is to develop.
 
-## Project 1 
+## Project 1
 started with a demo where I developed a web appliction which works locally on my notebook controlling a LED on a Arduino board.
 
 ### Overview
@@ -16,7 +16,7 @@ It uses
 ## Project 2
 Beside StrongLoop, I am given expanded role to look into [Bluemix](https://console.ng.bluemix.net/), so I wanted to put this demo on the Bluemix and yet I would like to control my Arduino board LED.
 
-I was considering to use 
+I was considering using either
 - websocket
 - mqtt
 
@@ -26,5 +26,19 @@ In this project (mqtt-web), I modified Project 1, where I make use of [mosquitto
 
 It uses
 - mosquitto - mqtt
-- Bluemix - StrongLoop loopback starter app 
+- Bluemix - StrongLoop loopback starter app
 
+To test the application,
+run the following in a terminal
+
+  node ./server/arduino-end-point.js
+
+in another terminal, run
+
+    node .
+
+From a browser, use http://localhost:3000 to control the LED.
+
+I have modified the loopback starter app in Bluemix where I can use the above application control Arduino LED connected to be machine.
+
+With this, I can go into a meeting session, where my clients can access the application in Bluemix controlling the LED connected to my local machine.

@@ -1,15 +1,8 @@
-var five = require("johnny-five");
-var board = new five.Board();
-var led ;
+var mqtt = require('mqtt');
+var client = mqtt.connect('mqtt://test.mosquitto.org');
+var TOPIC = "js-arduino-end-point";
 
-var OFF = "off";
-var ON = "on";
-var BLINK = "blink";
-
-board.on("ready", function() {
-  led = new five.Led(13);
-  //led.blink(500);
-});
+client.subscribe(TOPIC);
 
 module.exports = function(Light) {
   Light.getLightState = function(lightID, cb) {
@@ -43,9 +36,10 @@ module.exports = function(Light) {
   Light.afterRemote('upsert', function(context, user, next) {
     console.log("+++ upsert afterRemote is called.");
 
-    LED(context);
-
-    next();
+      console.log("before call LED()");
+      LED(context);
+      console.log("after call LED()");
+      next();
   });
 
   Light.afterRemote('create',function(context, user, next) {
@@ -57,19 +51,15 @@ module.exports = function(Light) {
   });
 
   function LED(context){
-    var state = context.req.body.lightState.toLowerCase();
-    var id = context.req.body.lightID;
-    console.log('state requested: '+state + ' for ID: '+id);
 
-    if(ON == state){
-      led.on();
-    }else if (OFF == state) {
-      led.stop();
-      led.off();
-    } else if (BLINK == state){
-      led.blink();
-    } else  {
-      console.log('state requested: '+context.req.body.lightState + " is invalid.");
-    }
+      var state = context.req.body.lightState.toLowerCase();
+      var id = context.req.body.lightID;
+    
+      console.log('state requested: '+state + ' for ID: '+id);
+
+      console.log("before publish with client...");
+      var payload = '{"lightID":'+id+',"lightState":"'+state+'"}';
+      client.publish(TOPIC, payload);
+      console.log("publish payload: "+payload);
   }
 };
