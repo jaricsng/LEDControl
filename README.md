@@ -28,3 +28,4 @@ It uses
 - mosquitto - mqtt
 - Bluemix - StrongLoop loopback starter app 
 
+[Diagram](https://github.com/rwaldron/johnny-five/blob/master/docs/repl.md) of connecting the LED on Arduino.
