@@ -51,7 +51,7 @@ module.exports = function(Light) {
   Light.afterRemote('create',function(context, user, next) {
     console.log("+++ create afterRemote is called.");
 
-    LED(id,state);
+    LED(context);
 
     next();
   });
