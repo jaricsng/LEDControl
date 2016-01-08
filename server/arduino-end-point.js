@@ -6,10 +6,35 @@ var OFF = "off";
 var ON = "on";
 var BLINK = "blink";
 
-board.on("ready", function() {
-  led = new five.Led(13);
-  //led.blink(500);
+var onStr = "";
+var offStr = "";
+var blinkStr = "";
+
+var arduinoConnected = false;
+
+var fs = require("fs");
+
+fs.readFile("./server/ascii-on.txt","utf-8", function (err, data) {
+    if (err) throw err;
+    onStr = data;
 });
+
+fs.readFile("./server/ascii-off.txt","utf-8", function (err, data) {
+    if (err) throw err;
+    offStr = data;
+});
+
+fs.readFile("./server/ascii-blink.txt","utf-8", function (err, data) {
+    if (err) throw err;
+    blinkStr = data;
+});
+
+if (arduinoConnected){
+    board.on("ready", function() {
+	led = new five.Led(13);
+	//led.blink(500);
+    });
+}
 
 var mqtt = require('mqtt');
 var client = mqtt.connect('mqtt://test.mosquitto.org');
@@ -41,13 +66,22 @@ function setLight(otherId, otherState){
 
   console.log('state requested: '+state + ' for ID: '+id);
 
-  if(ON == state){
-    led.on();
+    if(ON == state){
+	if(arduinoConnected){
+	    led.on();
+	}
+	console.log(onStr);
   }else if (OFF == state) {
-    led.stop();
-    led.off();
+	if(arduinoConnected){
+	    led.stop();
+	    led.off();
+	}
+      console.log(offStr);
   } else if (BLINK == state){
-    led.blink();
+	if(arduinoConnected){
+	    led.blink();
+	}
+      console.log(blinkStr);
   } else  {
     console.log('state requested: '+ state + " is invalid.");
   }
