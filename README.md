@@ -31,7 +31,7 @@ It uses
 To test the application,
 run the following in a terminal
 
-  node ./server/arduino-end-point.js
+    node ./server/arduino-end-point.js
 
 in another terminal, run
 
