@@ -42,3 +42,5 @@ From a browser, use http://localhost:3000 to control the LED.
 I have modified the loopback starter app in Bluemix where I can use the above [application](http://js-arduino-web.mybluemix.net/) control Arduino LED connected to be machine.
 
 With this, I can go into a meeting session, where my clients can access the application in Bluemix controlling the LED connected to my local machine.
+
+Do check out IBM [Internet of Things](https://quickstart.internetofthings.ibmcloud.com/#/) Foundation to see how easy it is to connect your device to IoT Foundation and view live sensor data
